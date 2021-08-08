@@ -1,7 +1,7 @@
 import 'dart:ui';
 
-import 'package:discord_clone/decorations/decorations.dart';
-import 'package:discord_clone/widgets/blue_button.dart';
+import '../decorations/decorations.dart';
+import '../widgets/blue_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,8 +10,32 @@ import 'main_screen.dart';
 import '../widgets/dark_button.dart';
 import '../widgets/neo_icon.dart';
 
-class WelcomeScreen extends StatelessWidget {
+class WelcomeScreen extends StatefulWidget {
+  @override
+  _WelcomeScreenState createState() => _WelcomeScreenState();
+}
+
+class _WelcomeScreenState extends State<WelcomeScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+
+  late Animation _carAnimation;
+
   int kilometersTravelled = 150;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller =
+        AnimationController(vsync: this, duration: Duration(seconds: 1));
+    _carAnimation = CurvedAnimation(parent: _controller, curve: Curves.easeIn);
+  }
+
+  Future<void> animateCar() async {
+    await precacheImage(Image.asset('assets/images/Car.png').image, context);
+    _controller.forward();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -119,23 +143,36 @@ class WelcomeScreen extends StatelessWidget {
               ],
             ),
           ),
-          Positioned(
-            top: 350,
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => MainScreen(),
-                  ),
-                );
-              },
-              child: Image.asset(
-                'assets/images/Car.png',
-                fit: BoxFit.fitWidth,
-              ),
-            ),
-          )
+          FutureBuilder<void>(
+              future: animateCar(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return SizedBox();
+                } else {
+                  return AnimatedBuilder(
+                      animation: _carAnimation,
+                      builder: (context, _) {
+                        return Positioned(
+                          top: 350,
+                          left: (1 - _carAnimation.value) * 300,
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => MainScreen(),
+                                ),
+                              );
+                            },
+                            child: Image.asset(
+                              'assets/images/Car.png',
+                              fit: BoxFit.fitWidth,
+                            ),
+                          ),
+                        );
+                      });
+                }
+              }),
         ],
       ),
     );

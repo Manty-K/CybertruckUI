@@ -83,7 +83,7 @@ class _CustomSliderPainter extends CustomPainter {
 
     final thumbRadius = 15.0;
 
-    final circleOffest = Offset(size.width * percentage, centerY);
+    final circleOffset = Offset(size.width * percentage, centerY);
 
     final rect = Rect.fromCenter(
         center: center, width: size.width, height: sliderHeight);
@@ -94,7 +94,6 @@ class _CustomSliderPainter extends CustomPainter {
 
     //inactive paint
     final inactiveTrackPaint = Paint()
-      // ..color = Colors.amber
       ..shader = LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
@@ -128,7 +127,7 @@ class _CustomSliderPainter extends CustomPainter {
             Color(0xff141515),
             Color(0xff2e3236),
           ]).createShader(
-          Rect.fromCircle(center: circleOffest, radius: thumbRadius * 0.9));
+          Rect.fromCircle(center: circleOffset, radius: thumbRadius * 0.9));
 
     final dotPaint = Paint()
       ..shader = LinearGradient(
@@ -137,7 +136,7 @@ class _CustomSliderPainter extends CustomPainter {
           colors: [
             Color(0xff0f9bee),
             Color(0xff0172be),
-          ]).createShader(Rect.fromCircle(center: circleOffest, radius: 2));
+          ]).createShader(Rect.fromCircle(center: circleOffset, radius: 2));
 
     ///inactive track
     canvas.drawRRect(RRect.fromRectAndRadius(rect, radius), inactiveTrackPaint);
@@ -147,9 +146,9 @@ class _CustomSliderPainter extends CustomPainter {
         RRect.fromRectAndRadius(activeRect, Radius.circular(sliderHeight)),
         activeTrackPaint);
 
-    canvas.drawCircle(circleOffest, thumbRadius, bgBlur);
-    canvas.drawCircle(circleOffest, thumbRadius * 0.9, smallButton);
-    canvas.drawCircle(circleOffest, 2, dotPaint);
+    canvas.drawCircle(circleOffset, thumbRadius, bgBlur);
+    canvas.drawCircle(circleOffset, thumbRadius * 0.9, smallButton);
+    canvas.drawCircle(circleOffset, 2, dotPaint);
   }
 
   @override

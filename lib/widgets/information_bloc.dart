@@ -1,62 +1,68 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class InformationSqaure extends StatelessWidget {
+class InformationBloc extends StatelessWidget {
   final String primaryText;
   final String secondaryText;
   final bool indicatorOn;
 
-  const InformationSqaure(
+  const InformationBloc(
       {required this.primaryText,
       required this.secondaryText,
       this.indicatorOn = false});
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 170,
-      width: 170,
-      child: CustomPaint(
-        willChange: true,
-        isComplex: true,
-        //size: Size(150, 150),
-        painter: InfonmationBloc(indicatorOn: indicatorOn),
-        child: Row(
-          children: [
-            SizedBox(width: 25),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 100),
-                Text(
-                  primaryText,
-                  style: GoogleFonts.lato(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w900,
+    return GestureDetector(
+      onTap: () {
+        print('tapatap');
+      },
+      child: SizedBox(
+        height: 170,
+        width: 170,
+        child: CustomPaint(
+          willChange: true,
+          isComplex: true,
+          //size: Size(150, 150),
+          painter: _InfonmationBlocPainter(indicatorOn: indicatorOn),
+          child: Row(
+            children: [
+              SizedBox(width: 25),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 100),
+                  Text(
+                    primaryText,
+                    style: GoogleFonts.lato(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w900,
+                    ),
                   ),
-                ),
-                SizedBox(height: 3),
-                Text(
-                  secondaryText,
-                  style: GoogleFonts.lato(
-                    color: Color(0xff7f8489),
-                    fontSize: 18,
-                  ),
-                )
-              ],
-            ),
-          ],
+                  SizedBox(height: 3),
+                  Text(
+                    secondaryText,
+                    style: GoogleFonts.lato(
+                      color: Color(0xff7f8489),
+                      fontSize: 18,
+                    ),
+                  )
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-class InfonmationBloc extends CustomPainter {
+class _InfonmationBlocPainter extends CustomPainter {
   bool indicatorOn = false;
-  InfonmationBloc({this.indicatorOn = false});
+  _InfonmationBlocPainter({this.indicatorOn = false});
 
   double length = 150.0;
 

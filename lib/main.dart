@@ -1,8 +1,8 @@
 import 'dart:ui';
-import 'package:discord_clone/screens/ac_settings_screen.dart';
+import 'screens/ac_settings_screen.dart';
 import 'package:flutter/services.dart';
 
-import 'package:discord_clone/screens/welcome_screen.dart';
+import 'screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'screens/main_screen.dart';
@@ -19,11 +19,12 @@ class MyApp extends StatelessWidget {
         statusBarColor: Color(0xff353a40) // status bar color
         ));
     return MaterialApp(
-        title: 'Tesla',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: ACSettingsScreen());
+      title: 'Tesla',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: WelcomeScreen(),
+    );
   }
 }

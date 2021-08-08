@@ -54,7 +54,7 @@ class _MainScreenState extends State<MainScreen>
       duration: Duration(milliseconds: 500),
     );
 
-    _curve = CurvedAnimation(parent: _controller, curve: Curves.easeOut);
+    _curve = CurvedAnimation(parent: _controller, curve: Curves.easeInOutCubic);
   }
 
   void toggle() =>
@@ -71,6 +71,7 @@ class _MainScreenState extends State<MainScreen>
                 Container(
                   decoration: BoxDecoration(
                     gradient: backgroundGradient(),
+                    //color: Color(0xff353a40),
                   ),
                 ),
                 SafeArea(
@@ -136,60 +137,65 @@ class _MainScreenState extends State<MainScreen>
                         ),
                         SizedBox(height: 10),
                         //CAR
-                        Image.asset('assets/images/Car-Front.png'),
+                        Image.asset(
+                          'assets/gif/cybertruck_opaque.gif',
+                        ),
 
                         SizedBox(height: 10),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            LabelText(text: 'Status'),
-                            SizedBox(height: 20),
-                            Row(
-                              children: [
-                                status(
-                                  iconPath: 'assets/icons/battery.svg',
-                                  statusName: 'Battery',
-                                  statusValue: '$batteryPercentage%',
-                                ),
-                                SizedBox(width: 30),
-                                status(
-                                  iconPath: 'assets/icons/range.svg',
-                                  statusName: 'Range',
-                                  statusValue: '$kilometersTravelled km',
-                                ),
-                                SizedBox(width: 30),
-                                status(
-                                  iconPath: 'assets/icons/temperature.svg',
-                                  statusName: 'Temperature',
-                                  statusValue: '$temperature°C',
-                                )
-                              ],
-                            ),
-                            SizedBox(height: 30),
-                            LabelText(text: 'Information'),
-                            SizedBox(height: 20),
-                            Row(
-                              children: [
-                                informationBlocs[0],
-                                informationBlocs[1],
-                              ],
-                            ),
-                            SizedBox(height: 30),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                LabelText(text: 'Navigation'),
-                                Spacer(),
-                                Text(
-                                  'History',
-                                  style: GoogleFonts.lato(
-                                    color: Colors.white,
-                                    fontSize: 18,
+                        Container(
+                          // color: Colors.red,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              LabelText(text: 'Status'),
+                              SizedBox(height: 20),
+                              Row(
+                                children: [
+                                  status(
+                                    iconPath: 'assets/icons/battery.svg',
+                                    statusName: 'Battery',
+                                    statusValue: '$batteryPercentage%',
                                   ),
-                                )
-                              ],
-                            ),
-                          ],
+                                  SizedBox(width: 30),
+                                  status(
+                                    iconPath: 'assets/icons/range.svg',
+                                    statusName: 'Range',
+                                    statusValue: '$kilometersTravelled km',
+                                  ),
+                                  SizedBox(width: 30),
+                                  status(
+                                    iconPath: 'assets/icons/temperature.svg',
+                                    statusName: 'Temperature',
+                                    statusValue: '$temperature°C',
+                                  )
+                                ],
+                              ),
+                              SizedBox(height: 30),
+                              LabelText(text: 'Information'),
+                              SizedBox(height: 20),
+                              Row(
+                                children: [
+                                  informationBlocs[0],
+                                  informationBlocs[1],
+                                ],
+                              ),
+                              SizedBox(height: 30),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  LabelText(text: 'Navigation'),
+                                  Spacer(),
+                                  Text(
+                                    'History',
+                                    style: GoogleFonts.lato(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),

@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import '../decorations/decorations.dart';
-import '../external/utils.dart';
 import '../widgets/blue_button.dart';
 import '../widgets/custom_slider.dart';
 import '../widgets/label_text.dart';
@@ -31,10 +30,28 @@ class _ACSettingsScreenState extends State<ACSettingsScreen> {
       children: [
         Container(
           decoration: BoxDecoration(
-            gradient: backgroundGradient(),
+            color: Color(0xff424750),
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(50),
               topRight: Radius.circular(50),
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(0, 2),
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Color(0xff353a40),
+                    Color(0xff16171b),
+                  ]),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(50),
+                topRight: Radius.circular(50),
+              ),
             ),
           ),
         ),
@@ -46,7 +63,7 @@ class _ACSettingsScreenState extends State<ACSettingsScreen> {
                   onTap: widget.handleClicked,
                   child: Container(
                     color: Colors.transparent,
-                    height: 40,
+                    height: 30,
                     width: double.maxFinite,
                   )),
               Container(
@@ -217,42 +234,3 @@ class _ACSettingsScreenState extends State<ACSettingsScreen> {
     return degree * pi / 180;
   }
 }
-
-// class FanControlPainter extends CustomPainter {
-//   @override
-//   void paint(Canvas canvas, Size size) {
-//     final centerX = size.width / 2;
-//     final centerY = size.height / 2;
-
-//     final center = Offset(centerX, centerY);
-
-//     final radius = min(centerX, centerY);
-//   }
-
-//   @override
-//   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
-// }
-
-// class Sweep extends StatelessWidget {
-//   const Sweep({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Transform.rotate(
-//       angle: -pi,
-//       child: Container(
-//         width: 300,
-//         height: 300,
-//         decoration: BoxDecoration(
-//             shape: BoxShape.circle,
-//             gradient: SweepGradient(
-//                 // startAngle: degreeToRadian(30),
-//                 // endAngle: degreeToRadian(180),
-//                 colors: [
-//                   Colors.blue,
-//                   Colors.white,
-//                 ])),
-//       ),
-//     );
-//   }
-// }

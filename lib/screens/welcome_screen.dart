@@ -3,7 +3,6 @@ import 'dart:ui';
 import '../decorations/decorations.dart';
 import '../widgets/blue_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'main_screen.dart';
@@ -21,6 +20,8 @@ class _WelcomeScreenState extends State<WelcomeScreen>
 
   late Animation _carAnimation;
 
+  late Animation _kilometerAnimation;
+
   int kilometersTravelled = 150;
 
   @override
@@ -30,10 +31,14 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     _controller =
         AnimationController(vsync: this, duration: Duration(seconds: 1));
     _carAnimation = CurvedAnimation(parent: _controller, curve: Curves.easeIn);
+
+    _kilometerAnimation = IntTween(begin: 0, end: 239).animate(_controller);
   }
 
-  Future<void> animateCar() async {
+  Future<void> prefetchAssets() async {
     await precacheImage(Image.asset('assets/images/Car.png').image, context);
+    await precacheImage(
+        Image.asset('assets/gif/cybertruck_opaque.gif').image, context);
     _controller.forward();
   }
 
@@ -88,15 +93,20 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Spacer(),
-                    Text(
-                      '$kilometersTravelled',
-                      style: TextStyle(
-                        fontFamily: 'Gilroy',
-                        color: Color(0xfffdfdfd),
-                        fontSize: 200,
-                        //fontWeight: FontWeight.w200,
-                      ),
-                    ),
+                    AnimatedBuilder(
+                        animation: _kilometerAnimation,
+                        builder: (context, w) {
+                          return Text(
+                            // '$kilometersTravelled',
+                            '${_kilometerAnimation.value}',
+                            style: TextStyle(
+                              fontFamily: 'Gilroy',
+                              color: Color(0xfffdfdfd),
+                              fontSize: 200,
+                              //fontWeight: FontWeight.w200,
+                            ),
+                          );
+                        }),
                     Column(
                       children: [
                         SizedBox(
@@ -105,10 +115,9 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                         Text(
                           'km',
                           style: TextStyle(
-                            fontFamily: 'Gilroy',
-                            fontSize: 30,
-                            color: Color(0xfffdfdfd),
-                          ),
+                              fontFamily: 'Gilroy',
+                              fontSize: 30,
+                              color: Color(0xfffdfdfd)),
                         ),
                       ],
                     ),
@@ -144,7 +153,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
             ),
           ),
           FutureBuilder<void>(
-              future: animateCar(),
+              future: prefetchAssets(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return SizedBox();
@@ -154,14 +163,32 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                       builder: (context, _) {
                         return Positioned(
                           top: 350,
-                          left: (1 - _carAnimation.value) * 300,
+                          left: (1 - _carAnimation.value) * 410,
                           child: GestureDetector(
                             onTap: () {
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //     builder: (context) => MainScreen(),
+                              //   ),
+                              // );
+
+                              final ro = PageRouteBuilder(
+                                  transitionsBuilder: (a, b, c, child) {
+                                    return FadeTransition(
+                                      child: child,
+                                      opacity: b,
+                                    );
+                                  },
+                                  transitionDuration:
+                                      Duration(milliseconds: 500),
+                                  pageBuilder: (a, b, c) {
+                                    return MainScreen();
+                                  });
+
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(
-                                  builder: (context) => MainScreen(),
-                                ),
+                                ro,
                               );
                             },
                             child: Image.asset(

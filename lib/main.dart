@@ -1,11 +1,8 @@
 import 'dart:ui';
-import 'screens/ac_settings_screen.dart';
 import 'package:flutter/services.dart';
 
 import 'screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
-
-import 'screens/main_screen.dart';
 
 void main() {
   runApp(MyApp());

@@ -204,7 +204,7 @@ class _MainScreenState extends State<MainScreen>
                 Transform.translate(
                   offset: Offset(
                     0,
-                    ((1 - _curve.value) * 650) + 110,
+                    ((1 - _curve.value) * 650) + 50,
                   ),
                   child: ACSettingsScreen(
                     handleClicked: () {

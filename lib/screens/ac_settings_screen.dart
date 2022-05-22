@@ -147,22 +147,22 @@ class _ACSettingsScreenState extends State<ACSettingsScreen> {
                 value: 0.7,
               ),
               SizedBox(
-                height: 50,
+                height: 10,
               ),
               LabelText(text: 'Mode'),
-              SizedBox(height: 10),
+              SizedBox(height: 15),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   NeuIcon(
                     svgPath: 'assets/icons/auto.svg',
                     painter: _programMode == ProgramMode.auto
-                        ? BlueButton(buttonRadius: 40.0)
-                        : DisabledButton(buttonRadius: 40.0),
+                        ? BlueButton(buttonRadius: 30.0)
+                        : DisabledButton(buttonRadius: 30.0),
                     iconColor: _programMode == ProgramMode.auto
                         ? Colors.white
                         : Color(0xff7f8489),
-                    size: 95,
+                    size: 50,
                     iconSize: 15,
                     onTap: () {
                       setState(() {
@@ -173,12 +173,12 @@ class _ACSettingsScreenState extends State<ACSettingsScreen> {
                   NeuIcon(
                     svgPath: 'assets/icons/dry.svg',
                     painter: _programMode == ProgramMode.dry
-                        ? BlueButton(buttonRadius: 40.0)
-                        : DisabledButton(buttonRadius: 40.0),
+                        ? BlueButton(buttonRadius: 30.0)
+                        : DisabledButton(buttonRadius: 30.0),
                     iconColor: _programMode == ProgramMode.dry
                         ? Colors.white
                         : Color(0xff7f8489),
-                    size: 95,
+                    size: 50,
                     iconSize: 18,
                     onTap: () {
                       setState(() {
@@ -189,12 +189,12 @@ class _ACSettingsScreenState extends State<ACSettingsScreen> {
                   NeuIcon(
                     svgPath: 'assets/icons/cool.svg',
                     painter: _programMode == ProgramMode.cool
-                        ? BlueButton(buttonRadius: 40.0)
-                        : DisabledButton(buttonRadius: 40.0),
+                        ? BlueButton(buttonRadius: 30.0)
+                        : DisabledButton(buttonRadius: 30.0),
                     iconColor: _programMode == ProgramMode.cool
                         ? Colors.white
                         : Color(0xff7f8489),
-                    size: 95,
+                    size: 50,
                     iconSize: 20,
                     onTap: () {
                       setState(() {
@@ -205,12 +205,12 @@ class _ACSettingsScreenState extends State<ACSettingsScreen> {
                   NeuIcon(
                     svgPath: 'assets/icons/program.svg',
                     painter: _programMode == ProgramMode.program
-                        ? BlueButton(buttonRadius: 40.0)
-                        : DisabledButton(buttonRadius: 40.0),
+                        ? BlueButton(buttonRadius: 30.0)
+                        : DisabledButton(buttonRadius: 30.0),
                     iconColor: _programMode == ProgramMode.program
                         ? Colors.white
                         : Color(0xff7f8489),
-                    size: 95,
+                    size: 50,
                     iconSize: 20,
                     onTap: () {
                       setState(() {

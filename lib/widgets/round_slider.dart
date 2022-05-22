@@ -36,8 +36,8 @@ class _RoundSliderState extends State<RoundSlider> {
         });
       },
       child: Container(
-        height: 300,
-        width: 300,
+        height: 250,
+        width: 250,
         // color: Colors.deepPurple,
         child: Transform.rotate(
           angle: 2.21,
@@ -76,7 +76,7 @@ class _RoundSliderPainter extends CustomPainter {
 
     double maxAngle = 5;
 
-    final double pathWidth = 50;
+    final double pathWidth = 30;
 
     final linesLength = 15;
     final linesSpacing = 10;

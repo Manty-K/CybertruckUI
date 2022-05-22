@@ -69,7 +69,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   ],
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 10,
                 ),
                 Text(
                   'Tesla',
@@ -87,7 +87,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   ),
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,7 +102,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                             style: TextStyle(
                               fontFamily: 'Gilroy',
                               color: Color(0xfffdfdfd),
-                              fontSize: 200,
+                              fontSize: 150,
                               //fontWeight: FontWeight.w200,
                             ),
                           );
@@ -134,10 +134,10 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                 ),
                 NeuIcon(
                   svgPath: 'assets/icons/lock.svg',
-                  painter: BlueButton(buttonRadius: 60.0),
+                  painter: BlueButton(buttonRadius: 40.0),
                   iconColor: Colors.white,
-                  size: 180,
-                  iconSize: 30,
+                  size: 100,
+                  iconSize: 10,
                   onTap: () {},
                 ),
                 Text(
@@ -162,7 +162,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                       animation: _carAnimation,
                       builder: (context, _) {
                         return Positioned(
-                          top: 350,
+                          top: 250,
                           left: (1 - _carAnimation.value) * 410,
                           child: GestureDetector(
                             onTap: () {
